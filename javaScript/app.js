@@ -63,13 +63,11 @@ function addToCart(key) {
 }
 
 addToCart();
-// addProduct();
-
-
 
 function addAllProductCart(event) {
 
     var amount = document.querySelector('#cart-number');
+    amount = inputValue.value;
     var result = document.querySelector('.cart__bought-result');
     result = 125 * amount;
     addProductCart(amount, result)

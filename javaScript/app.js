@@ -35,17 +35,12 @@ addProduct();
 
 /////////////////////////////////////////////////////////////////
 let quantity = document.querySelector('.quantity');
-// console.log(quantity.textContent); //0
-// console.log(quantity);
-
 let cart = document.querySelector('.header__menu-picture button');
 let cartDesc = document.querySelector('.cart__desc');
 const btnCart = document.querySelector('.btn__cart');
 let inputValue = document.querySelector('input');
-// console.log(inputValue.value);
 const emptyCart = document.querySelector('.cart__desc-empty');
 
-//  Пустой массив для корзины
 let arr = [];
 
 
@@ -55,9 +50,6 @@ cart.addEventListener('click', () => {
 
 
 btnCart.addEventListener('click', () => {
-    // нужно чтобы не было 0, а какая-та цифра
-    // нужно сделать если 0 - то не выводить
-    // console.log(inputValue.value); // выводит число которое в инпуте
     quantity.classList.add('buy');
     addToCart();
     addAllProductCart();
@@ -76,37 +68,17 @@ addToCart();
 
 
 function addAllProductCart(event) {
-    // var button = event.target;
-    // var title = document.querySelector('.cart__bought-title').innerText;
-    // console.log(title);
-    
-    // var price = document.querySelector('.cart__bought-price');
-    // console.log(price);
-    
-    // перерменная для числа вводимого в количество - сколько нужно купить
+
     var amount = document.querySelector('#cart-number');
-    amount = inputValue.value;
-    // console.log(amount);
-    
-    // переменная для общей цены - цены умноженой на количество
     var result = document.querySelector('.cart__bought-result');
     result = 125 * amount;
-    // console.log(result);   
-
     addProductCart(amount, result)
 }
 
 function addProductCart(amount, result) {
-    // создаем тег div
     var item = document.createElement('div');
-    // console.log(item);    
-    // присвавиваем ему класс
     item.classList.add = 'item';
-    // переменная для всего контента который появляется при покупке
     var cartBuy = document.querySelector('.cart__buy');
-    // console.log(cartBouget);
-    
-    // переменная для контента при покупке
     var cartBouget = `
               <div class="cart__bought">
                 <div class="cart__bought-content">                  
@@ -124,35 +96,20 @@ function addProductCart(amount, result) {
                 <a href="#" class="cart__checkout">Checkout</a>         
               </div>
     `
-    // всавялем контнент в созданный div
     item.innerHTML = cartBouget;
-    // console.log(cartBouget);
     
-    // определяем место вставленному контенту
     cartBuy.append(item);
-    // console.log(cartBouget);
-    // добавили удаление товара
     item.querySelector('.btn-delete').addEventListener('click', delItem)
     emptyCart.style.display = 'none';
 }
 
 
-// Кнопка удаления корзины
 const btnDel = document.querySelector('.btn-delete');
-
-// console.log(emptyCart);
-
-
 
 function delItem (event) {
     var btnClicked = event.target;
-    // console.log(btnClicked); // img
-    //  console.log(btnClicked.parentElement.parentElement.nextElementSibling);   
-    // удаление всего контента в корзине
       btnClicked.parentElement.parentElement.parentElement.remove();
-      // появление надпииси - корзина пуста
     emptyCart.style.display = 'block';
-    // после удаления содержимого корзины удаляется количество в корзине
     quantity.classList.remove('buy');
 }
 
